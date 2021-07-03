@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +25,7 @@ Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('r
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::apiResource('admin/products', ProductController::class)->middleware('admin');
+    Route::apiResource('admin/categories', CategoryController::class)->middleware('admin');
 });
