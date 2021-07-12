@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
 
                 Vix veritus docendi indoctum no. Ei est scaevola mandamus. Ne pro wisi dicant posidonium, soluta recteque id ius, in usu aeque affert oportere. Duis tantas consetetur eum ei, et choro possit vim. Cu mei nobis audiam petentium.',
                 'image' => 'images/male-watch-144648_1920.jpg',
-                'price' => '549990',
+                'price' => 5499.90,
                 'discount' => '15'
             ]
         );
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
 
                 Doming deleniti et sit. Usu an maiorum fuisset, mei ea discere facilis scaevola, tantas vulputate at mei. His affert veniam urbanitas ei, iracundia posidonium eam et. Alterum scaevola sed ne, alterum fastidii senserit ne sit.',
                 'image' => 'images/male-watch-188780_1920.jpg',
-                'price' => '119999',
+                'price' => 1199.99,
                 'discount' => '20'
             ]
         );
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
 
                 Doming deleniti et sit. Usu an maiorum fuisset, mei ea discere facilis scaevola, tantas vulputate at mei. His affert veniam urbanitas ei, iracundia posidonium eam et. Alterum scaevola sed ne, alterum fastidii senserit ne sit.',
                 'image' => 'images/male-watch-188782_1920.jpg',
-                'price' => '150000',
+                'price' => 1500.00,
                 'discount' => '0'
             ]
         );
@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
 
                 Novum decore ex vix. Mei lorem utamur ne, an lorem vidisse delectus mea. Cu eam etiam nulla iudico. Officiis definitiones interpretaris ne qui, pri id atqui minim consetetur. Et cetero viderer usu, eu vis ferri congue evertitur, ea eam eros everti.',
                 'image' => 'images/night-76880.jpg',
-                'price' => '79090',
+                'price' => 790.90,
                 'discount' => '10'
             ]
         );
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
 
                 Doming deleniti et sit. Usu an maiorum fuisset, mei ea discere facilis scaevola, tantas vulputate at mei. His affert veniam urbanitas ei, iracundia posidonium eam et. Alterum scaevola sed ne, alterum fastidii senserit ne sit.',
                 'image' => 'images/pocket-watch-560937_1280.jpg',
-                'price' => '80990',
+                'price' => 809.90,
                 'discount' => '0'
             ]
         );
@@ -110,7 +110,7 @@ class ProductSeeder extends Seeder
 
                 Vix veritus docendi indoctum no. Ei est scaevola mandamus. Ne pro wisi dicant posidonium, soluta recteque id ius, in usu aeque affert oportere. Duis tantas consetetur eum ei, et choro possit vim. Cu mei nobis audiam petentium.',
                 'image' => 'images/pexels-photo-125779.jpg',
-                'price' => '234990',
+                'price' => 2349.90,
                 'discount' => '30'
             ]
         );
@@ -126,7 +126,7 @@ class ProductSeeder extends Seeder
 
                 Novum decore ex vix. Mei lorem utamur ne, an lorem vidisse delectus mea. Cu eam etiam nulla iudico. Officiis definitiones interpretaris ne qui, pri id atqui minim consetetur. Et cetero viderer usu, eu vis ferri congue evertitur, ea eam eros everti.',
                 'image' => 'images/pexels-photo-225085.jpg',
-                'price' => '549990',
+                'price' => 5499.90,
                 'discount' => '15'
             ]
         );
@@ -142,7 +142,7 @@ class ProductSeeder extends Seeder
 
                 Vix veritus docendi indoctum no. Ei est scaevola mandamus. Ne pro wisi dicant posidonium, soluta recteque id ius, in usu aeque affert oportere. Duis tantas consetetur eum ei, et choro possit vim. Cu mei nobis audiam petentium.',
                 'image' => 'images/rolex-watch-time-luxury-364822.jpg',
-                'price' => '349990',
+                'price' => 3499.90,
                 'discount' => '10'
             ]
         );
@@ -158,7 +158,7 @@ class ProductSeeder extends Seeder
 
                 Doming deleniti et sit. Usu an maiorum fuisset, mei ea discere facilis scaevola, tantas vulputate at mei. His affert veniam urbanitas ei, iracundia posidonium eam et. Alterum scaevola sed ne, alterum fastidii senserit ne sit.',
                 'image' => 'images/pocket-watch-2036304_1920.jpg',
-                'price' => '119990',
+                'price' => 1199.90,
                 'discount' => '30'
             ]
         );
@@ -174,7 +174,7 @@ class ProductSeeder extends Seeder
 
                 Per in erat patrioque, ex sit idque tibique. Eos impetus recusabo argumentum ut. Sea esse ancillae inimicus ut. Affert vocibus ex vel, imperdiet voluptatibus est cu. Id laboramus theophrastus qui, an veniam maiorum referrentur vis. Sea te putant eripuit, eu vel stet omnes.',
                 'image' => 'images/pexels-photo-190819.jpg',
-                'price' => '449990',
+                'price' => 4499.90,
                 'discount' => '25'
             ]
         );
@@ -193,7 +193,7 @@ class ProductSeeder extends Seeder
 
                 Novum decore ex vix. Mei lorem utamur ne, an lorem vidisse delectus mea. Cu eam etiam nulla iudico. Officiis definitiones interpretaris ne qui, pri id atqui minim consetetur. Et cetero viderer usu, eu vis ferri congue evertitur, ea eam eros everti.',
                 'image' => 'images/pocket-watch-2061228_1920.jpg',
-                'price' => '200000',
+                'price' => 2000.00,
                 'discount' => '10'
             ]
         );
@@ -209,7 +209,7 @@ class ProductSeeder extends Seeder
 
                 Vix veritus docendi indoctum no. Ei est scaevola mandamus. Ne pro wisi dicant posidonium, soluta recteque id ius, in usu aeque affert oportere. Duis tantas consetetur eum ei, et choro possit vim. Cu mei nobis audiam petentium.',
                 'image' => 'images/watch-1955856_1920.jpg',
-                'price' => '189000',
+                'price' => 1890.00,
                 'discount' => '0'
             ]
         );

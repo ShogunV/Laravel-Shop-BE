@@ -24,6 +24,10 @@ class Product extends Model
         'discount',
     ];
 
+    protected $casts = [
+        'price' => 'float'
+    ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo('App\Models\Category');

@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +27,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return compact('products');
+        $products = ProductResource::collection(Product::all());
+        $categories = Category::all();
+        return compact('products', 'categories');
     }
 
     /**
@@ -30,12 +43,14 @@ class ProductController extends Controller
         $formInput = $request->except('image');
         $formInput['price'] = $formInput['price'] * 100;
 
-        $path = $request->file('image')->store('images');
-        $formInput['image'] = $path;
+        $image = $request->file('image');
+        if(!empty($image)){
+            $path = $image->store('images');
+            $formInput['image'] = $path;
+        }
 
         Product::create($formInput);
-        $products = Product::all();
-        return compact('products');
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -64,12 +79,14 @@ class ProductController extends Controller
         $formInput = $request->except('image');
         $formInput['price'] = $formInput['price'] * 100;
 
-        $path = $request->file('image')->store('images');
-        $formInput['image'] = $path;
+        $image = $request->file('image');
+        if(!empty($image)){
+            $path = $image->store('images');
+            $formInput['image'] = $path;
+        }
 
         $product->update($formInput);
-        $products = Product::all();
-        return compact('products');
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -81,7 +98,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
-        $products = Product::all();
-        return compact('products');
+        return ProductResource::collection(Product::all());
     }
 }
