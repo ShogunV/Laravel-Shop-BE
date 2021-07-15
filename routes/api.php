@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -36,8 +37,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('checkout-session', [CheckoutController::class, 'index']);
 
     // admin routes
-    Route::apiResource('admin/products', ProductController::class);
-    Route::apiResource('admin/categories', CategoryController::class);
-    Route::get('admin/users', UserController::class, 'index');
-    Route::get('admin/orders', [OrderController::class, 'index']);
+    Route::middleware('admin')->group(function(){
+        Route::apiResource('admin/products', ProductController::class);
+        Route::apiResource('admin/categories', CategoryController::class);
+        Route::get('admin/users', [UserController::class, 'index']);
+        Route::get('admin/orders', [OrderController::class, 'index']);
+    });
 });

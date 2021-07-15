@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -13,13 +15,24 @@ class CheckoutController extends Controller
      */
     public function index(Request $request)
     {
+        $cart = $request->input('cart');
         $total = $request->input('total');
+        $totalQuantity = $request->input('totalQuantity');
+        $user = Auth::user();
         \Stripe\Stripe::setApiKey(env('STRIPE_KEY'));
+
+        Order::create([
+            'user_id' => $user->id,
+            'total' => $total,
+            'total_quantity' => $totalQuantity,
+            'data' => (string) collect($cart)
+        ]);
+
         $checkout_session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
               'price_data' => [
-                'currency' => 'usd',
+                'currency' => 'eur',
                 'unit_amount' => (int) $total * 100,
                 'product_data' => [
                   'name' => 'Your cart total',
@@ -29,8 +42,8 @@ class CheckoutController extends Controller
               'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => env('FRONT_END_URL') . '?success=true',
-            'cancel_url' => env('FRONT_END_URL') . '?canceled=true',
+            'success_url' => env('FRONT_END_URL') . '/cart?success=true',
+            'cancel_url' => env('FRONT_END_URL') . '/cart?canceled=true',
           ]);
 
           return response(['url' => $checkout_session->url], 200);
