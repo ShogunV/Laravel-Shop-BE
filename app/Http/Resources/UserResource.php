@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'totalOrders' => $this->orders->count(),
             'totalItems' => $this->orders->sum('total_quantity'),
-            'totalDineros' => $this->orders->sum('total'),
+            'totalDineros' => number_format($this->orders->sum('total'), 2),
         ];
     }
 }

@@ -26,21 +26,28 @@ class AuthController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole('customer');
 
-        return response($user, Response::HTTP_CREATED);
+        $token = $user->createToken('token')->plainTextToken;
+        $cookie = cookie('token', $token, 2880);
+
+        return response([
+            'token' => $token,
+            'user' => $user
+        ], Response::HTTP_CREATED)->withCookie($cookie);
     }
 
     public function login(LoginRequest $request)
     {
         if(!Auth::attempt($request->only('email', 'password'))){
-            return response([
+            return response()->json([
                 'error' => true,
                 'data' => 'Invalid credentials'
-            ], Response::HTTP_UNAUTHORIZED);
+            ]);
         }
 
         $user = Auth::user();
+        $user['role'] = $user->hasRole('admin') ? 'admin' : 'customer';
 
         $token = $user->createToken('token')->plainTextToken;
 

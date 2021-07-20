@@ -25,9 +25,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = ProductResource::collection(Product::all());
+        $category = $request->query('category');
+        if(!empty($category)){
+            $filteredProducts = Product::whereHas('category', function($query) use ($category) {
+                $query->where('title', $category);
+            })->get();
+        }
+        if(empty($category)){
+            $filteredProducts = Product::all();
+        }
+        $products = ProductResource::collection($filteredProducts);
         $categories = Category::all();
         return compact('products', 'categories');
     }
@@ -41,7 +50,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $formInput = $request->except('image');
-        $formInput['price'] = $formInput['price'] * 100;
+        $formInput['price'] = $formInput['price'];
 
         $image = $request->file('image');
         if(!empty($image)){
@@ -50,7 +59,8 @@ class ProductController extends Controller
         }
 
         Product::create($formInput);
-        return ProductResource::collection(Product::all());
+        $products = ProductResource::collection(Product::all());
+        return compact('products');
     }
 
     /**
@@ -61,7 +71,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = new ProductResource(Product::find($id));
         return compact('product');
     }
 
@@ -77,7 +87,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $formInput = $request->except('image');
-        $formInput['price'] = $formInput['price'] * 100;
+        $formInput['price'] = $formInput['price'];
 
         $image = $request->file('image');
         if(!empty($image)){
@@ -86,7 +96,8 @@ class ProductController extends Controller
         }
 
         $product->update($formInput);
-        return ProductResource::collection(Product::all());
+        $products = ProductResource::collection(Product::all());
+        return compact('products');
     }
 
     /**
@@ -98,6 +109,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
-        return ProductResource::collection(Product::all());
+        $products = ProductResource::collection(Product::all());
+        return compact('products');
     }
 }

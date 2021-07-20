@@ -29,8 +29,7 @@ class OrderController extends Controller
 
         foreach ($orders as $index => $order) {
             $order['user'] = User::find($order['user_id'])->name;
-            $order['order'] = unserialize($order->order);
-            $order['orderItems'] = $order->order['products'];
+            $order['data'] = json_decode($order->data);
         }
 
         return compact('orders');

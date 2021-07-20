@@ -23,6 +23,7 @@ class Order extends Model
     ];
 
     protected $casts = [
+        'created_at' => 'date:H:i d-m-Y',
         'data' => 'array'
     ];
 
