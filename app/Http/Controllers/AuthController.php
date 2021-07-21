@@ -40,10 +40,10 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if(!Auth::attempt($request->only('email', 'password'))){
-            return response()->json([
+            return response([
                 'error' => true,
                 'data' => 'Invalid credentials'
-            ]);
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         $user = Auth::user();
@@ -56,7 +56,7 @@ class AuthController extends Controller
         return response([
             'token' => $token,
             'user' => $user
-        ])->withCookie($cookie);
+        ], Response::HTTP_OK)->withCookie($cookie);
     }
 
     public function logout()
@@ -66,7 +66,7 @@ class AuthController extends Controller
         return response([
             'error' => false,
             'data' => 'Success'
-        ])->withCookie($cookie);
+        ], Response::HTTP_OK)->withCookie($cookie);
     }
 
     public function forgotPassword(ForgotPasswordRequest $request)
@@ -78,7 +78,7 @@ class AuthController extends Controller
         return response([
             'error' => false,
             'data' => 'If that email address is in our database, we will send you an email to reset your password.'
-        ]);
+        ], Response::HTTP_OK);
     }
 
     public function resetPassword(ResetPasswordRequest $request)
@@ -99,10 +99,10 @@ class AuthController extends Controller
         return $status === Password::PASSWORD_RESET ? response([
             'error' => false,
             'data' => 'Your password has been reset'
-        ]) : response([
+        ], Response::HTTP_OK) : response([
             'error' => true,
             'data' => 'There was an error while resetting password.'
-        ]);
+        ], Response::HTTP_BAD_REQUEST);
     }
 
     public function user(Request $request)

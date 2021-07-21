@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
@@ -32,6 +33,6 @@ class OrderController extends Controller
             $order['data'] = json_decode($order->data);
         }
 
-        return compact('orders');
+        return response(compact('orders'), Response::HTTP_OK);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class CheckoutController extends Controller
 {
@@ -46,7 +47,7 @@ class CheckoutController extends Controller
             'cancel_url' => env('FRONT_END_URL') . '/cart?canceled=true',
           ]);
 
-          return response(['url' => $checkout_session->url], 200);
+          return response(['url' => $checkout_session->url], Response::HTTP_OK);
     }
 
 }

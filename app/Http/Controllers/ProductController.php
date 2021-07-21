@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -38,7 +39,7 @@ class ProductController extends Controller
         }
         $products = ProductResource::collection($filteredProducts);
         $categories = Category::all();
-        return compact('products', 'categories');
+        return response(compact('products', 'categories'), Response::HTTP_OK);
     }
 
     /**
@@ -60,7 +61,7 @@ class ProductController extends Controller
 
         Product::create($formInput);
         $products = ProductResource::collection(Product::all());
-        return compact('products');
+        return response(compact('products'), Response::HTTP_CREATED);
     }
 
     /**
@@ -72,7 +73,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = new ProductResource(Product::find($id));
-        return compact('product');
+        return response(compact('product'), Response::HTTP_OK);
     }
 
     /**
@@ -97,7 +98,7 @@ class ProductController extends Controller
 
         $product->update($formInput);
         $products = ProductResource::collection(Product::all());
-        return compact('products');
+        return response(compact('products'), Response::HTTP_OK);
     }
 
     /**
@@ -110,6 +111,6 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         $products = ProductResource::collection(Product::all());
-        return compact('products');
+        return response(compact('products'), Response::HTTP_OK);
     }
 }

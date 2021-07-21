@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
@@ -26,7 +27,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return compact('categories');
+        return response(compact('categories'), Response::HTTP_OK);
     }
 
     /**
@@ -39,7 +40,7 @@ class CategoryController extends Controller
     {
         Category::create($request->all());
         $categories = Category::all();
-        return compact('categories');
+        return response(compact('categories'), Response::HTTP_CREATED);
     }
 
     /**
@@ -51,7 +52,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-        return compact('category');
+        return response(compact('category'), Response::HTTP_OK);
     }
 
     /**
@@ -66,7 +67,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->update($request->all());
         $categories = Category::all();
-        return compact('categories');
+        return response(compact('categories'), Response::HTTP_OK);
     }
 
     /**
@@ -79,6 +80,6 @@ class CategoryController extends Controller
     {
         Category::destroy($id);
         $categories = Category::all();
-        return compact('categories');
+        return response(compact('categories'), Response::HTTP_OK);
     }
 }

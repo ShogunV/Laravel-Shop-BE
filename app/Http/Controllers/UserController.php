@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -26,6 +27,6 @@ class UserController extends Controller
     public function index()
     {
         $users = UserResource::collection(User::all());
-        return compact('users');
+        return response(compact('users'), Response::HTTP_OK);
     }
 }
