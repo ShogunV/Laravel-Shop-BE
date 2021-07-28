@@ -51,7 +51,6 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $formInput = $request->except('image');
-        $formInput['price'] = $formInput['price'];
 
         $image = $request->file('image');
         if(!empty($image)){
@@ -83,12 +82,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $product = Product::find($id);
 
         $formInput = $request->except('image');
-        $formInput['price'] = $formInput['price'];
 
         $image = $request->file('image');
         if(!empty($image)){
