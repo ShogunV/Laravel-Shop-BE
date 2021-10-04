@@ -34,7 +34,7 @@ class CheckoutController extends Controller
                 ];
             }
             $productPrice = $product->price * (1 - $product->discount / 100);
-            $calculatedTotal += round($productPrice * $cartProduct['quantity']);
+            $calculatedTotal += round($productPrice) * $cartProduct['quantity'];
         }
 
         if ((int)$calculatedTotal !== (int)$total) {
